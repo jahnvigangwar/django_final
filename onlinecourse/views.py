@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-# <HINT> Import any new Models here
+# Importing any new Models here
 from .models import Course, Enrollment, Question, Choice, Submission
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
@@ -10,9 +10,8 @@ from django.contrib.auth import login, logout, authenticate
 import logging
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
-# Create your views here.
-
-
+# Create your views here
+#view 1
 def registration_request(request):
     context = {}
     if request.method == 'GET':
@@ -38,7 +37,7 @@ def registration_request(request):
             context['message'] = "User already exists."
             return render(request, 'onlinecourse/user_registration_bootstrap.html', context)
 
-
+# view2
 def login_request(request):
     context = {}
     if request.method == "POST":
@@ -54,12 +53,12 @@ def login_request(request):
     else:
         return render(request, 'onlinecourse/user_login_bootstrap.html', context)
 
-
+#view3
 def logout_request(request):
     logout(request)
     return redirect('onlinecourse:index')
 
-
+#view 4
 def check_if_enrolled(user, course):
     is_enrolled = False
     if user.id is not None:
@@ -70,7 +69,7 @@ def check_if_enrolled(user, course):
     return is_enrolled
 
 
-# CourseListView
+# 5 CourseListView
 class CourseListView(generic.ListView):
     template_name = 'onlinecourse/course_list_bootstrap.html'
     context_object_name = 'course_list'
@@ -112,7 +111,7 @@ def extract_answers(request):
             submitted_anwsers.append(choice_id)
     return submitted_anwsers
 
-# <HINT> Create a submit view to create an exam submission record for a course enrollment,
+# Create a submit view to create an exam submission record for a course enrollment,
 # you may implement it based on following logic:
          # Get user and course object, then get the associated enrollment object created when the user enrolled the course
          # Create a submission object referring to the enrollment
