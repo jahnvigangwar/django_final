@@ -130,7 +130,7 @@ def submit(request, course_id):
     submission.save()         
     return HttpResponseRedirect(reverse(viewname='onlinecourse:show_exam_result', args=(course.id,submission.id ))) 
 
-# <HINT> Create an exam result view to check if learner passed exam and show their question results and result for each question,
+# Create an exam result view to check if learner passed exam and show their question results and result for each question,
 # you may implement it based on the following logic:
         # Get course and submission based on their ids
         # Get the selected choice ids from the submission record
